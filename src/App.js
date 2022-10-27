@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import Header from './components/Header';
 import { GlobleStyle } from './GlobleStyle';
 import About from './pages/About';
 import Cart from './pages/Cart';
@@ -16,8 +17,8 @@ const App = () => {
       text: 'rgba(29 ,29, 29, .8)',
       white: '#fff',
       black: ' #212529',
-      helper: '#8490ff',
-
+      helper: '#0000e6',
+      cart_bg: '#bec1c1',
       bg: '#F6F8FA',
       footer_bg: '#0a1435',
       btn: 'rgb(98 84 243)',
@@ -34,10 +35,12 @@ const App = () => {
       tab: '998px',
     },
   };
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <GlobleStyle />
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
