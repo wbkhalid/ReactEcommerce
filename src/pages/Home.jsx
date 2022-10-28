@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import Hero from '../components/Hero';
 
 const Home = () => {
+  const data ={
+    name:'WBK Store'
+  }
   return (
-    <div>Home</div>
-  )
-}
+    <>
+      <Hero mydata={data}/>
+    </>
+  );
+};
 
-export default Home
+export default Home;

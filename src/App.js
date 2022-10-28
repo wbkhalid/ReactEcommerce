@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import Header from './components/Header';
-import { GlobleStyle } from './GlobleStyle';
+import { GlobalStyle } from './GlobleStyle';
 import About from './pages/About';
 import Cart from './pages/Cart';
 import Contact from './pages/Contact';
@@ -16,10 +16,10 @@ const App = () => {
       heading: 'rgb(24 24 29)',
       text: 'rgba(29 ,29, 29, .8)',
       white: '#fff',
-      black: ' #212529',
+      black: '#000',
       helper: '#0000e6',
-      cart_bg: '#bec1c1',
-      bg: '#F6F8FA',
+      cart_bg: '#fff',
+      bg: '#d9d9d9',
       footer_bg: '#0a1435',
       btn: 'rgb(98 84 243)',
       border: 'rgba(98, 84, 243, 0.5)',
@@ -39,7 +39,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <GlobleStyle />
+        <GlobalStyle />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

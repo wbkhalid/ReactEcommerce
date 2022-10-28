@@ -125,14 +125,14 @@ const Nav = styled.nav`
       z-index: 9999;
 
       .mobile-navbar--icon {
-        font-size: 4.2rem;
+        font-size: 3rem;
         color: ${({ theme }) => theme.colors.black};
       }
     }
 
     .active .mobile-navbar--icon {
       display: none;
-      font-size: 4rem;
+      font-size: 3rem;
       position: absolute;
       top: 10%;
       right: 10%;
@@ -172,7 +172,7 @@ const Nav = styled.nav`
 
     }
     .navbar-link{
-      font-size: 4rem;
+      font-size: 10rem;
     }
   }
 `;
