@@ -68,7 +68,7 @@ h3 {
 
 p, button {
   color: ${({ theme }) => theme.colors.text};
-  font-size: 1.65rem;
+  font-size: 2rem;
   line-height: 1.5;
   font-weight:400;
 }
@@ -91,7 +91,7 @@ ${"" /* resuable code section  */}
 
 .grid {
   display: grid;
-  gap: 20rem;
+  gap: 10rem;
 }
 
 .grid-two--column {

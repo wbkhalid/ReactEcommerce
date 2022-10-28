@@ -69,6 +69,7 @@ const Nav = styled.nav`
         font-size: 1.8rem;
         font-weight: 500;
         text-transform: uppercase;
+        font-weight: 700;
         color: ${({ theme }) => theme.colors.black};
         transition: all 0.3s linear;
       }
