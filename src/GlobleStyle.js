@@ -69,7 +69,7 @@ h3 {
 p, button {
   color: ${({ theme }) => theme.colors.text};
   font-size: 2rem;
-  line-height: 1.5;
+  line-height: 1.2;
   font-weight:400;
 }
 
@@ -87,7 +87,7 @@ ${"" /* resuable code section  */}
 .container {
   max-width: 150rem;
   margin: 0 auto;
-  /* border: 1px solid black; */
+
 }
 
 .grid {
@@ -104,7 +104,7 @@ ${"" /* resuable code section  */}
 }
 
 .grid-four--column{
-   grid-template-columns: 1fr 1.2fr .5fr .8fr ;
+   grid-template-columns: 1fr 1fr 1fr 1fr ;
 }
 
 .grid-five--column{

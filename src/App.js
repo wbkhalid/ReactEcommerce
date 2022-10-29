@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import { GlobalStyle } from './GlobleStyle';
 import About from './pages/About';
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="/singleproduct/:id" element={<SingleProduct />} />
           <Route path="*" element={<Error />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </ThemeProvider>
   );
