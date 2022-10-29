@@ -56,13 +56,13 @@ h1 {
  h2 {
    color: ${({ theme }) => theme.colors.heading};
    font-size: 4rem;
-   font-weight: 300;
+   font-weight: 700;
    /* white-space: normal; */
   
   }
 
 h3 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 400;
 }
 
@@ -85,8 +85,9 @@ li {
 ${"" /* resuable code section  */}
 
 .container {
-  max-width: 100rem;
+  max-width: 150rem;
   margin: 0 auto;
+  /* border: 1px solid black; */
 }
 
 .grid {
