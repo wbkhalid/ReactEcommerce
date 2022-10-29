@@ -139,7 +139,7 @@ ${"" /* resuable code section  */}
 input, textarea{
     max-width: 50rem;
     color: ${({ theme }) => theme.colors.black};
-    padding: 1.6rem 2.4rem;
+    padding: 1rem 2rem;
     border: 1px solid ${({ theme }) => theme.colors.border};
     text-transform: uppercase;
    box-shadow: ${({ theme }) => theme.colors.shadowSupport};
@@ -149,12 +149,13 @@ input, textarea{
     margin-top: 2rem;
     background-color: ${({ theme }) => theme.colors.btn};
     color: ${({ theme }) => theme.colors.white};
-    padding: 1.4rem 2.2rem;
+    padding: 1rem 2rem;
     border-style: solid;
     border-width: .1rem;
     text-transform: uppercase;
-    font-size: 1.8rem;
+    font-size: 2rem;
     cursor: pointer;
+    border-radius: 1rem;
     }
 
 /* @media (max-width: ${({ theme }) => theme.media.tab}) { */
