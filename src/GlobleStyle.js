@@ -93,7 +93,7 @@ ${"" /* resuable code section  */}
 
 .grid {
   display: grid;
-  gap: 10rem;
+  /* gap: 10rem; */
 }
 
 .grid-two--column {

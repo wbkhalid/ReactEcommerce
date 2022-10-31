@@ -39,7 +39,7 @@ const SingleProduct = () => {
       <div className="container">
         <div className="grid grid-two--column">
           <div className="product-image">
-            <ProductImage image={image} />
+            <ProductImage img={image} />
           </div>
           <div className="product-data">
             <h2>{name}</h2>
@@ -108,7 +108,12 @@ const Wrapper = styled.section`
     
   }
   .grid {
-    padding: 2rem;
+    padding: 1rem;
+  }
+
+  .product-image{
+    display: flex;
+    align-items: center;
   }
   .product-data {
     display: flex;
@@ -156,11 +161,7 @@ const Wrapper = styled.section`
       font-weight: bold;
     }
   }
-  .product-images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  
   .page_loading {
     font-size: 3.2rem;
     display: flex;
