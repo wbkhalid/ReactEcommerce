@@ -33,7 +33,7 @@ const Wrapper = styled.section`
     }
 
   .container {
-    max-width: 125rem;
+    max-width: 123rem;
     background-color: ${({ theme }) => theme.colors.bg};
     padding: 5rem 5rem;
     border-radius: 1rem;
@@ -46,7 +46,7 @@ const Wrapper = styled.section`
     align-items: center;
     position: relative;
     transition: all 0.5s linear;
-    &::after {
+    /* &::after {
       content: '';
       position: absolute;
       top: 0;
@@ -56,12 +56,13 @@ const Wrapper = styled.section`
       background-color: rgba(0, 0, 0, 0.5);
       transition: all 0.2s linear;
       cursor: pointer;
-    }
-    &:hover::after {
+    } */
+    /* &:hover::after {
       width: 100%;
-    }
+    } */
     &:hover img {
-      transform: scale(0.99);
+      transform: scale(1.1);
+      opacity: .9;
     }
     img {
       max-width: 90%;

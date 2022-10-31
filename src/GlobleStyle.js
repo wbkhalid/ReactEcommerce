@@ -44,6 +44,7 @@ h2,
 h3,
 h4 {
    font-family: "Work Sans", sans-serif;
+   text-transform: capitalize;
 
 }
 
@@ -97,6 +98,7 @@ ${"" /* resuable code section  */}
 
 .grid-two--column {
   grid-template-columns: repeat(2, 1fr);
+  /* border: 1px solid black; */
 }
 
 .grid-three--column {
