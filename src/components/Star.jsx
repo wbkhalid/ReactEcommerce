@@ -5,7 +5,7 @@ const Star = ({ stars, reviews }) => {
   const ratingStar = Array.from({ length: 5 }, (_, index) => {
     let number = index + 0.5;
     return (
-      <span>
+      <span key={index}>
         {stars >= index + 1 ? (
           <BsStarFill className="icon" />
         ) : stars >= number ? (
@@ -39,3 +39,4 @@ const Wrapper = styled.section`
   }
 `;
 export default Star;
+

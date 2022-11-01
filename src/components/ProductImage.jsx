@@ -8,11 +8,11 @@ const ProductImage = ({ img = [{ url: '' }] }) => {
       <div className="grid">
         {img.map((curElem, index) => {
           return (
-            <figure>
+            <figure key={index}>
               <img
                 src={curElem.url}
                 alt={curElem.filename}
-                key={index}
+                
                 onClick={() => setMainImage(curElem)}
               />
             </figure>
