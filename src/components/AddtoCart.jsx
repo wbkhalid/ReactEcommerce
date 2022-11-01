@@ -99,6 +99,7 @@ const Wrapper = styled.section`
       background-color: #aca9a9;
       padding: .1rem .5rem;
       border: none;
+      cursor: pointer;
     }
   }
 `;
