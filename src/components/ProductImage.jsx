@@ -28,11 +28,10 @@ const ProductImage = ({ img = [{ url: '' }] }) => {
 };
 
 const Wrapper = styled.section`
-  margin: 1rem;
+  
   display: grid;
   grid-template-columns: 0.4fr 1fr;
-  border: 1px solid;
-
+  
   .grid {
     display: flex;
     flex-direction: column;

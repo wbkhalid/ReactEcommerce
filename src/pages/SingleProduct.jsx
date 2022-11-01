@@ -7,6 +7,7 @@ import { useProductContext } from '../context/productcontext';
 import FormatPrice from '../helper/FormatPrice';
 import { MdSecurity } from 'react-icons/md';
 import { TbTruckDelivery, TbReplace } from 'react-icons/tb';
+import Star from '../components/Star';
 
 const SingleProduct = () => {
   const API = 'https://api.pujakaitem.com/api/products';
@@ -43,8 +44,8 @@ const SingleProduct = () => {
           </div>
           <div className="product-data">
             <h2>{name}</h2>
-            <p>{stars} stars</p>
-            <p>{reviews} reviews</p>
+            <Star stars={stars} reviews={reviews}/>
+            
             <p className="product-data-price">
               MRP:
               <del>
@@ -90,7 +91,7 @@ const SingleProduct = () => {
               <p>
                 ID : <span> {id} </span>
               </p>
-              <p>
+              <p className='brand'>
                 Brand :<span> {company} </span>
               </p>
             </div>
@@ -150,6 +151,9 @@ const Wrapper = styled.section`
       flex-direction: column;
       gap: 1rem;
       font-size: 1.8rem;
+    }
+    .brand{
+      text-transform: capitalize;
     }
     hr {
       max-width: 100%;
