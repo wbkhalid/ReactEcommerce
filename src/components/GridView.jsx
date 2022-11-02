@@ -15,7 +15,7 @@ const GridView = ({ products }) => {
 
 const Wrapper = styled.section`
 
-padding: 9rem,2rem;
+padding: 5rem 1rem;
 
   figure {
     width: auto;

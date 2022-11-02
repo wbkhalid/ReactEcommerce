@@ -10,7 +10,7 @@ const ListView = ({ products }) => {
         {products.map((curElem) => {
           const { id, name, price, image, description } = curElem;
           return (
-            <div className="card grid grid-two--column">
+            <div className="card grid grid-two--column" key={id}>
               <NavLink to={`/singleproduct/${id}`}>
                 <figure>
                   <img src={image} alt={name} />
