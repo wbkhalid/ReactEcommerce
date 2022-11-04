@@ -4,7 +4,7 @@ import { BsFillGridFill, BsList } from 'react-icons/bs';
 import { useFilterContext } from '../context/filterContext';
 
 const Sort = () => {
-  const { filter_products, grid_view, setGridView, setListView } =
+  const { filter_products, grid_view, setGridView, setListView, sorting } =
     useFilterContext();
   return (
     <Wrapper>
@@ -23,9 +23,28 @@ const Sort = () => {
           <BsList className="icon" />
         </button>
       </div>
+      {/* total products */}
+      <div className="product-data">
+        <h3>{`${filter_products.length} Product Available`}</h3>
+      </div>
 
-      <div className="product-data"><h3>{`${filter_products.length} Product Available`}</h3></div>
-      <div className="sort-selection">Dropdown</div>
+      {/* sorting deopdown */}
+      <div className="sort-selection">
+        <form action="#">
+          <label htmlFor="sort"></label>
+          <select
+            name="sort"
+            id="sort"
+            className="sort-selection--style"
+            onClick={sorting}
+          >
+            <option value="lowest">Price (Lowest)</option>
+            <option value="highest">Price (Highest)</option>
+            <option value="a-z">Alphabatically (a-z)</option>
+            <option value="z-a">Alphabatically (z-a)</option>
+          </select>
+        </form>
+      </div>
     </Wrapper>
   );
 };
@@ -47,9 +66,7 @@ const Wrapper = styled.section`
     font-size: 1.5rem;
   }
 
-  
-
-  .icon{
+  .icon {
     font-weight: bold;
   }
 
@@ -60,5 +77,3 @@ const Wrapper = styled.section`
 `;
 
 export default Sort;
-
-
