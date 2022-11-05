@@ -1,10 +1,37 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+import { useFilterContext } from '../context/filterContext';
 
 const FilterSection = () => {
+  const {
+    filters: { text },
+    updateFilterValue,
+  } = useFilterContext();
   return (
-    <div>FilterSection</div>
-    
-  )
-}
+    <Wrapper>
+      <div className="filter-search">
+        <form onSubmit={(e) => e.preventDefault()}>
+          <input
+            type="text"
+            name="text"
+            placeholder="Search"
+            value={text}
+            onChange={updateFilterValue}
+          />
+        </form>
+      </div>
+    </Wrapper>
+  );
+};
+const Wrapper = styled.section`
+  .filter-search {
+    padding: 2rem 3rem;
 
-export default FilterSection
+    input{
+
+      text-transform: lowercase;
+    }
+  }
+`;
+
+export default FilterSection;
