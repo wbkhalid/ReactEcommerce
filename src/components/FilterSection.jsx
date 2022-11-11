@@ -4,7 +4,7 @@ import { useFilterContext } from '../context/filterContext';
 
 const FilterSection = () => {
   const {
-    filters: { text, category },
+    filters: { text, category, company },
     updateFilterValue,
     all_products,
   } = useFilterContext();
@@ -17,6 +17,7 @@ const FilterSection = () => {
   };
 
   const categoryData = getUniqueData(all_products, 'category');
+  const companyData = getUniqueData(all_products, 'company');
   return (
     <Wrapper>
       <div className="filter-search">
@@ -48,6 +49,27 @@ const FilterSection = () => {
           );
         })}
       </div>
+
+      <div className="filter-company">
+        <h3>Company</h3>
+
+        <form action="#">
+          <select
+            name="comapny"
+            id="comapny"
+            className="filter-compay--select"
+            onClick={updateFilterValue}
+          >
+            {companyData.map((curElem, index) => {
+              return (
+                <option key={index} name="company" value={curElem}>
+                  {curElem}
+                </option>
+              );
+            })}
+          </select>
+        </form>
+      </div>
     </Wrapper>
   );
 };
@@ -66,7 +88,7 @@ const Wrapper = styled.section`
     align-items: center;
     line-height: 3;
 
-    h3{
+    h3 {
       font-weight: 700;
     }
 
@@ -76,9 +98,19 @@ const Wrapper = styled.section`
       text-transform: capitalize;
       line-height: 1.7;
       cursor: pointer;
-
-     
     }
+  }
+
+  .filter-company{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 3;
+
+    h3 {
+      font-weight: 700;
+    }
+
   }
 `;
 
