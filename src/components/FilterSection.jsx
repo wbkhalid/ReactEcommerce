@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import { useFilterContext } from '../context/filterContext';
 import { FaCheck } from 'react-icons/fa';
 import FormatPrice from '../helper/FormatPrice'
+import {Button} from './Button'
 
 const FilterSection = () => {
   const {
-    filters: { text, category, color,price,minPrice,maxPrice },
+    filters: { text, category, company, color,price,minPrice,maxPrice, },
     updateFilterValue,
     all_products,
+    clearFilters
   } = useFilterContext();
 
   const getUniqueData = (data, property) => {
@@ -66,6 +68,7 @@ const FilterSection = () => {
             id="company"
             className="filter-company--select"
             onClick={updateFilterValue}
+           
           >
             {companyData.map((curElem, index) => {
               return (
@@ -124,6 +127,10 @@ const FilterSection = () => {
         <h3>Price</h3>
         <p><FormatPrice price={price}/></p>
         <input type="range" min={minPrice} max={maxPrice} value={price} name='price' onChange={updateFilterValue} />
+      </div>
+
+      <div className="clear-filters">
+        <Button onClick={clearFilters}>Clear Filters</Button>
       </div>
     </Wrapper>
   );
@@ -217,10 +224,18 @@ h3 {
     display: flex;
     align-items: center;
     flex-direction: column;
+    
 
     input{
       cursor: pointer;
+      margin-top: 2rem;
+
     }
+  }
+
+  .clear-filters{
+    text-align: center;
+    margin-top: 2rem;
   }
 `;
 
