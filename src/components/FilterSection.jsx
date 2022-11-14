@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { useFilterContext } from '../context/filterContext';
 import { FaCheck } from 'react-icons/fa';
+import FormatPrice from '../helper/FormatPrice'
 
 const FilterSection = () => {
   const {
-    filters: { text, category, color },
+    filters: { text, category, color,price,minPrice,maxPrice },
     updateFilterValue,
     all_products,
   } = useFilterContext();
@@ -116,10 +117,25 @@ const FilterSection = () => {
           })}
         </div>
       </div>
+
+      {/* filter Price */}
+
+      <div className="filter-price">
+        <h3>Price</h3>
+        <p><FormatPrice price={price}/></p>
+        <input type="range" min={minPrice} max={maxPrice} value={price} name='price' onChange={updateFilterValue} />
+      </div>
     </Wrapper>
   );
 };
 const Wrapper = styled.section`
+
+h3 {
+      font-weight: 700;
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+    }
   .filter-search {
     padding: 2rem 3rem;
 
@@ -132,12 +148,7 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    line-height: 3;
-    margin-bottom: 3rem;
-
-    h3 {
-      font-weight: 700;
-    }
+    /* line-height: 3; */
 
     .filter-category--menu {
       border: none;
@@ -152,14 +163,11 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    line-height: 3;
 
-    h3 {
-      font-weight: 700;
-    }
     select {
       text-transform: capitalize;
-      margin-bottom: 18rem;
+      cursor: pointer;
+
     }
   }
 
@@ -167,10 +175,7 @@ const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    line-height: 3;
-    h3 {
-      font-weight: 600;
-    }
+    
   }
 
   .filter-color--style {
@@ -206,6 +211,16 @@ const Wrapper = styled.section`
   }
   .active {
     opacity: 1;
+  }
+
+  .filter-price{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    input{
+      cursor: pointer;
+    }
   }
 `;
 
