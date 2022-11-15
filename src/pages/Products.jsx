@@ -29,17 +29,9 @@ const Wrapper = styled.section`
 padding: 5rem 0rem;
 .grid-filter--section{
   grid-template-columns: 1.5fr 8.5fr;
-  border: 1px solid;
+ 
   grid-gap: 2rem;
-  
-  .FilterSection{
-    
-    border: 1px solid;
   }
-  
-  .product-view--sort{
-    border: 1px solid;
-}}
 `;
 
 export default Products;

@@ -3,9 +3,11 @@ import { FaCheck } from 'react-icons/fa';
 import { useState } from 'react';
 import CartAmountToggle from './CartAmountToggle';
 import { NavLink } from 'react-router-dom';
-import {Button} from './Button'
+import { Button } from './Button';
+import { useCartContext } from '../context/cartContext';
 
 const AddtoCart = ({ product }) => {
+  const {AddtoCart} = useCartContext()
   const { id, colors, stock } = product;
   const [color, setColor] = useState(colors[0]);
 
@@ -45,12 +47,14 @@ const AddtoCart = ({ product }) => {
         setDecrease={setDecrease}
       />
 
-      <NavLink to={'/cart'}>
+      <NavLink
+        to={'/cart'}
+        onClick={() => AddtoCart(id, color, amount, product)}
+      >
         <Button>Add to Cart</Button>
       </NavLink>
-      
     </Wrapper>
-  );
+  ); 
 };
 
 const Wrapper = styled.section`
@@ -81,23 +85,22 @@ const Wrapper = styled.section`
     color: white;
     font-size: 1rem;
   }
-  
-  .amount-toggle{
+
+  .amount-toggle {
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-top: 2rem;
 
-    .amount-style{
-
+    .amount-style {
       font-size: 2.5rem;
       background-color: #aca9a9;
-      padding: .2rem 1rem;
+      padding: 0.2rem 1rem;
     }
-    button{
+    button {
       font-size: 2rem;
       background-color: #aca9a9;
-      padding: .1rem .5rem;
+      padding: 0.1rem 0.5rem;
       border: none;
       cursor: pointer;
     }
