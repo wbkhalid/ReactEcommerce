@@ -1,42 +1,115 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useCartContext } from '../context/cartContext'
+import React from 'react';
+import styled from 'styled-components';
+import CartItem from '../components/CartItem';
+import { useCartContext } from '../context/cartContext';
 
 const Cart = () => {
-  const {cart}= useCartContext()
- 
+  const { cart } = useCartContext();
+
   return (
-   <Wrapper>
+    <Wrapper>
+      <div className="container">
+        <div className="cart-heading grid grid-five--column">
+          <p>item</p>
+          <p>price</p>
+          <p>quantity</p>
+          <p>subtotal</p>
+          <p>remove</p>
+        </div>
+        <hr />
 
-<div className="container">
-  <div className="cart-heading grid grid-five--column">
-    <p>item</p>
-    <p>price</p>
-    <p>quantity</p>
-    <p>subtotal</p>
-    <p>remove</p>
-  </div>
-  <hr />
-</div>
-   </Wrapper>
-  )
-}
+        <div className="cart-item">
+          {cart.map((curElem) => {
+            return <CartItem key={curElem.id} {...curElem} />;
+          })}
+        </div>
+      </div>
+    </Wrapper>
+  );
+};
 
-const Wrapper =styled.section`
-padding: 5rem 0;
+const Wrapper = styled.section`
+  padding: 5rem 0;
 
-.cart-heading{
-  text-transform: capitalize;
-  text-align: center;
-  p{
-
-    font-weight: bold;
+  .cart-heading {
+    text-transform: capitalize;
+    text-align: center;
+    padding: 1rem;
+    align-items: center;
+    p {
+      font-weight: bold;
+    }
   }
-}
 
-hr{
-  margin: 2rem 0;
-}
+  hr {
+    margin: 2rem 0;
+  }
+
+  .cart-item {
+   margin: 1rem;
+   color: #aaa5a5;
   
-`
-export default Cart
+    p {
+      font-weight: 200;
+    }
+
+    .cart-image--name {
+      align-items: center;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 0.4fr 1fr;
+      text-transform: capitalize;
+      text-align: left;
+      img {
+        max-width: 5rem;
+        height: 5rem;
+        object-fit: contain;
+        color: transparent;
+      }
+    }
+
+    .color-div {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+      .color-style {
+        width: 1.4rem;
+        height: 1.4rem;
+        border-radius: 50%;
+      }
+    }
+    .price {
+      font-size: 2rem;    
+      font-size: 2rem;    
+      font-size: 2rem;    
+      font-size: 2rem;    
+    }
+
+    .amount-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.4rem;
+    font-size: 1.4rem;
+    button {
+      border: none;
+      background-color: #fff;
+     
+      cursor: pointer;
+    }
+    .amount-style {
+      font-size: 2.4rem;
+      color: ${({ theme }) => theme.colors.btn};
+      
+    }
+  }
+
+    .remove_icon {
+      
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  }
+`;
+export default Cart;
