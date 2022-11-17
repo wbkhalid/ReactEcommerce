@@ -1,10 +1,22 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import CartItem from '../components/CartItem';
 import { useCartContext } from '../context/cartContext';
+import { Button } from '../components/Button';
 
 const Cart = () => {
-  const { cart } = useCartContext();
+  const { cart, clearCart } = useCartContext();
+  if (cart.length === 0) {
+    return (
+      <EmptyCart>
+        <h3> no item in cart</h3>
+        <NavLink to="/products">
+            <Button>continue shopping</Button>
+          </NavLink>
+      </EmptyCart>
+    );
+  }
 
   return (
     <Wrapper>
@@ -23,10 +35,37 @@ const Cart = () => {
             return <CartItem key={curElem.id} {...curElem} />;
           })}
         </div>
+
+        <hr />
+
+        <div className="cart-two--button">
+          <NavLink to="/products">
+            <Button>continue shopping</Button>
+          </NavLink>
+
+          <Button className="clear-cart" onClick={clearCart}>
+            clear cart
+          </Button>
+        </div>
       </div>
     </Wrapper>
   );
 };
+
+const EmptyCart = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height:50vh;
+
+  h3{
+    font-size: 7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+`
 
 const Wrapper = styled.section`
   padding: 5rem 0;
@@ -46,9 +85,9 @@ const Wrapper = styled.section`
   }
 
   .cart-item {
-   margin: 1rem;
-   color: #aaa5a5;
-  
+    margin: 1rem;
+    color: #aaa5a5;
+
     p {
       font-weight: 200;
     }
@@ -80,35 +119,42 @@ const Wrapper = styled.section`
       }
     }
     .price {
-      font-size: 2rem;    
-      font-size: 2rem;    
-      font-size: 2rem;    
-      font-size: 2rem;    
+      font-size: 2rem;
+      font-size: 2rem;
+      font-size: 2rem;
+      font-size: 2rem;
     }
 
     .amount-toggle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2.4rem;
-    font-size: 1.4rem;
-    button {
-      border: none;
-      background-color: #fff;
-     
-      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2.4rem;
+      font-size: 1.4rem;
+      button {
+        border: none;
+        background-color: #fff;
+
+        cursor: pointer;
+      }
+      .amount-style {
+        font-size: 2.4rem;
+        color: ${({ theme }) => theme.colors.btn};
+      }
     }
-    .amount-style {
-      font-size: 2.4rem;
-      color: ${({ theme }) => theme.colors.btn};
-      
+
+    .remove_icon {
+      font-size: 1.5rem;
+      cursor: pointer;
     }
   }
 
-    .remove_icon {
-      
-      font-size: 1.5rem;
-      cursor: pointer;
+  .cart-two--button {
+    display: flex;
+    justify-content: space-between;
+
+    .clear-cart {
+      background-color: #fb3535;
     }
   }
 `;
