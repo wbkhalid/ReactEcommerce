@@ -57,7 +57,7 @@ const EmptyCart = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height:50vh;
+  height:60vh;
 
   h3{
     font-size: 7rem;

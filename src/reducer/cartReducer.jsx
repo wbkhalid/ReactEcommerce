@@ -1,19 +1,84 @@
 const cartReducer = (state, action) => {
   if (action.type === 'ADD_TO_CART') {
     let { id, color, amount, product } = action.payload;
-    let cartProduct;
-    cartProduct = {
-      id: id + color,
-      name: product.name,
-      color,
-      amount,
-      image: product.image[0].url,
-      price: product.price,
-      max: product.stock,
-    };
+    // existing Product
+    let existingItem = state.cart.find((curElem) => curElem.id === id + color);
+
+    if (existingItem) {
+      let updatedProduct = state.cart.map((curElem) => {
+        if (curElem.id === id + color) {
+          let newAmount = curElem.amount + amount;
+          if (newAmount >= curElem.max) {
+            newAmount = curElem.max;
+          }
+          return {
+            ...curElem,
+            amount: newAmount,
+          };
+        } else {
+          return curElem;
+        }
+      });
+      return {
+        ...state,
+        cart: updatedProduct,
+      };
+    } else {
+      let cartProduct = {
+        id: id + color,
+        name: product.name,
+        color,
+        amount,
+        image: product.image[0].url,
+        price: product.price,
+        max: product.stock,
+      };
+      return {
+        ...state,
+        cart: [...state.cart, cartProduct],
+      };
+    }
+  }
+
+  if (action.type === 'SET_DECREASE') {
+    let updatedProduct = state.cart.map((curElem) => {
+      if (curElem.id === action.payload) {
+        let decAmount = curElem.amount - 1;
+        if (decAmount <= 1) {
+          decAmount = 1;
+        }
+        return {
+          ...curElem,
+          amount: decAmount,
+        };
+      } else {
+        return curElem;
+      }
+    });
     return {
       ...state,
-      cart: [...state.cart, cartProduct],
+      cart: updatedProduct,
+    };
+  }
+
+  if (action.type === 'SET_INCREASE') {
+    let updatedProduct = state.cart.map((curElem) => {
+      if (curElem.id === action.payload) {
+        let IncAmount = curElem.amount + 1;
+        if (IncAmount >= curElem.max) {
+          IncAmount = curElem.max;
+        }
+        return {
+          ...curElem,
+          amount: IncAmount,
+        };
+      } else {
+        return curElem;
+      }
+    });
+    return {
+      ...state,
+      cart: updatedProduct,
     };
   }
 
@@ -27,11 +92,23 @@ const cartReducer = (state, action) => {
     };
   }
 
-  if(action.type ==='CLEAR_CART'){
-    return{
+  if (action.type === 'CLEAR_CART') {
+    return {
       ...state,
-      cart:[]
-    }
+      cart: [],
+    };
+  }
+
+  if (action.type === 'CART_ITEM_VALUE') {
+    let updatedCartValue = state.cart.reduce((acc, curElem) => {
+      let { amount } = curElem;
+      acc = acc + amount;
+      return acc;
+    }, 0);
+    return {
+      ...state,
+      total_item:updatedCartValue
+    };
   }
   return state;
 };

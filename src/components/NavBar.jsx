@@ -6,8 +6,10 @@ import {
   AiOutlineMenu,
   AiOutlineClose,
 } from 'react-icons/ai';
+import { useCartContext } from '../context/cartContext';
 
 const NavBar = () => {
+  const {total_item} =useCartContext()
   const [menuIcon, setMenuIcon] = useState(false)
   return (
     <Nav>
@@ -36,7 +38,7 @@ const NavBar = () => {
           <li>
             <NavLink to="/cart" className="navbar-link cart-trolley--link" onClick={()=>setMenuIcon(false)}>
               <AiOutlineShoppingCart className="cart-trolley" />
-              <span className="cart-trolley--item">10</span>
+              <span className="cart-trolley--item">{total_item}</span>
             </NavLink>
           </li>
         </ul>

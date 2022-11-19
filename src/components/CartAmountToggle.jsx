@@ -1,7 +1,7 @@
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 const CartAmountToggle = ({ amount, setIncrease, setDecrease }) => {
-  console.log(amount, setIncrease, setDecrease)
+  
   return (
     <div className="cart-button">
       <div className="amount-toggle">
