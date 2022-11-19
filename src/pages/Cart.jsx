@@ -4,16 +4,17 @@ import styled from 'styled-components';
 import CartItem from '../components/CartItem';
 import { useCartContext } from '../context/cartContext';
 import { Button } from '../components/Button';
+import FormatPrice from '../helper/FormatPrice';
 
 const Cart = () => {
-  const { cart, clearCart } = useCartContext();
+  const { cart, clearCart, total_price, shipping_fee } = useCartContext();
   if (cart.length === 0) {
     return (
       <EmptyCart>
         <h3> no item in cart</h3>
         <NavLink to="/products">
-            <Button>continue shopping</Button>
-          </NavLink>
+          <Button>continue shopping</Button>
+        </NavLink>
       </EmptyCart>
     );
   }
@@ -48,6 +49,31 @@ const Cart = () => {
           </Button>
         </div>
       </div>
+
+      <div className="order-total--amount">
+        <div className="order-total--subdata">
+          <div>
+            <p className="heading">sub Total: </p>
+            <p>
+              <FormatPrice price={total_price} />
+            </p>
+          </div>
+
+          <div>
+            <p className="heading">shipping fee: </p>
+            <p>
+              <FormatPrice price={shipping_fee} />
+            </p>
+          </div>
+          <hr />
+          <div>
+            <p className="heading">Total: </p>
+            <p>
+              <FormatPrice price={total_price + shipping_fee} />
+            </p>
+          </div>
+        </div>
+      </div>
     </Wrapper>
   );
 };
@@ -57,15 +83,14 @@ const EmptyCart = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height:60vh;
+  height: 60vh;
 
-  h3{
+  h3 {
     font-size: 7rem;
     font-weight: bold;
     text-transform: uppercase;
   }
-  
-`
+`;
 
 const Wrapper = styled.section`
   padding: 5rem 0;
@@ -120,9 +145,6 @@ const Wrapper = styled.section`
     }
     .price {
       font-size: 2rem;
-      font-size: 2rem;
-      font-size: 2rem;
-      font-size: 2rem;
     }
 
     .amount-toggle {
@@ -155,6 +177,24 @@ const Wrapper = styled.section`
 
     .clear-cart {
       background-color: #fb3535;
+    }
+  }
+  .order-total--amount {
+    display: flex;
+    margin-top: 4rem;
+    flex-direction: row-reverse;
+    margin-right: 20rem;
+
+    .order-total--subdata {
+      div {
+        display: flex;
+        justify-content: space-between;
+        .heading {
+          margin-right: 2rem;
+          text-transform: capitalize;
+          font-weight: 600;
+        }
+      }
     }
   }
 `;
