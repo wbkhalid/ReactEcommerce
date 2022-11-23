@@ -7,7 +7,12 @@ const getLocalCartData = () => {
   let localCartData = localStorage.getItem('waleedCart');
   if (
     !Array.isArray(JSON.parse(localCartData)) ||
-    JSON.parse(localCartData).length
+    !JSON.parse(localCartData).length
+  ) {
+    return [];
+  } else if (
+    !Array.isArray(JSON.parse(localCartData)) ||
+    !!JSON.parse(localCartData).length
   ) {
     return JSON.parse(localCartData);
   }
@@ -27,13 +32,17 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     dispatch({ type: 'CART_ITEM_PRICE_TOTAL' });
+
+    localStorage.setItem('waleedCart', JSON.stringify(state.cart));
   }, [state.cart]);
 
   const AddtoCart = (id, color, amount, product) => {
     dispatch({
       type: 'ADD_TO_CART',
       payload: { id, color, amount, product },
-    });
+    })
+      .then((action) => console.log(action.payload)) //fulfilled action
+      .catch((action) => console.log(action.payload)); //rejected action
   };
 
   const setIncrease = (id) => {

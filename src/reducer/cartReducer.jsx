@@ -38,9 +38,7 @@ const cartReducer = (state, action) => {
         ...state,
         cart: [...state.cart, cartProduct],
       };
-
-      localStorage.setItem('waleedCart', JSON.stringify(data.cart));
-
+      
       return data;
     }
   }
