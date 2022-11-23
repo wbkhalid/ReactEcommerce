@@ -146,32 +146,31 @@ const cartReducer = (state, action) => {
   // }
 
   if (action.type === 'CART_ITEM_PRICE_TOTAL') {
-    if (!Array.isArray(state.cart)) return;
+      let { total_item, total_price } = (state.cart ?? []).reduce(
+        (accum, curElem) => {
+          if (curElem === []) {
+            return curElem;
+          } else {
+            let { price, amount } = curElem;
 
-    let { total_item, total_price } = state.cart.reduce(
-      (accum, curElem) => {
-        if (curElem === []) {
-          return curElem;
-        } else {
-          let { price, amount } = curElem;
+            accum.total_item += amount;
+            accum.total_price += price * amount;
 
-          accum.total_item += amount;
-          accum.total_price += price * amount;
-
-          return accum;
+            return accum;
+          }
+        },
+        {
+          total_item: 0,
+          total_price: 0,
         }
-      },
-      {
-        total_item: 0,
-        total_price: 0,
-      }
-    );
-    return {
-      ...state,
-      total_item,
-      total_price,
-    };
+      );
+      return {
+        ...state,
+        total_item,
+        total_price,
+      };
   }
+
 
   return state;
 };
