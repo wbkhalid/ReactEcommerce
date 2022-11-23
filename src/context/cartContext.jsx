@@ -7,27 +7,10 @@ const getLocalCartData = () => {
   let localCartData = localStorage.getItem('waleedCart');
   if (
     !Array.isArray(JSON.parse(localCartData)) ||
-    !JSON.parse(localCartData).length
-  ) {
-    console.log('is empty');
-    console.log('is empty');
-    console.log('is empty');
-
-    return [];
-  } else if (
-    !Array.isArray(JSON.parse(localCartData)) ||
     JSON.parse(localCartData).length
   ) {
-    console.log('is not empty');
-    console.log('is not empty');
-    console.log('is not empty');
-
     return JSON.parse(localCartData);
   }
-
-  console.log('is not empty');
-  console.log('is not empty');
-  console.log('is not empty');
 
   return [];
 };
@@ -42,13 +25,15 @@ const initialState = {
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  useEffect(() => {
+    dispatch({ type: 'CART_ITEM_PRICE_TOTAL' });
+  }, [state.cart]);
+
   const AddtoCart = (id, color, amount, product) => {
     dispatch({
       type: 'ADD_TO_CART',
       payload: { id, color, amount, product },
     });
-
-    dispatch({ type: 'CART_ITEM_PRICE_TOTAL' });
   };
 
   const setIncrease = (id) => {
