@@ -33,10 +33,15 @@ const cartReducer = (state, action) => {
         price: product.price,
         max: product.stock,
       };
-      return {
+
+      const data = {
         ...state,
         cart: [...state.cart, cartProduct],
       };
+
+      localStorage.setItem('waleedCart', JSON.stringify(data.cart));
+
+      return data;
     }
   }
 
@@ -99,78 +104,31 @@ const cartReducer = (state, action) => {
     };
   }
 
-  // if (action.type === 'CART_ITEM_VALUE') {
-  //   let updatedCartValue = state.cart.reduce((acc, curElem) => {
-  //     let { amount } = curElem;
-  //     acc = acc + amount;
-  //     return acc;
-  //   }, 0);
-  //   return {
-  //     ...state,
-  //     total_item: updatedCartValue,
-  //   };
-  // }
-
-  // if (action.type === 'CART_TOTAL_PRICE') {
-  //   let total_price = state.cart.reduce((acc, curElem) => {
-  //     let { price, amount } = curElem;
-  //     acc = acc + amount * price;
-  //     return acc;
-  //   }, 0);
-  //   return {
-  //     ...state,
-  //     total_price: total_price,
-  //   };
-  // }
-
-  // if (action.type === 'CART_ITEM_PRICE_TOTAL') {
-  //   let { total_item, total_price } = state.cart.reduce(
-  //     (acc, curElem) => {
-  //       let { price, amount } = curElem;
-
-  //       acc.total_item += amount;
-  //       acc.total_price += price * amount;
-
-  //       return acc;
-  //     },
-  //     {
-  //       total_item: 0,
-  //       total_price: 0,
-  //     }
-  //   );
-  //   return {
-  //     ...state,
-  //     total_item,
-  //     total_price,
-  //   };
-  // }
-
   if (action.type === 'CART_ITEM_PRICE_TOTAL') {
-      let { total_item, total_price } = (state.cart ?? []).reduce(
-        (accum, curElem) => {
-          if (curElem === []) {
-            return curElem;
-          } else {
-            let { price, amount } = curElem;
+    let { total_item, total_price } = (state.cart ?? []).reduce(
+      (accum, curElem) => {
+        if (curElem === []) {
+          return curElem;
+        } else {
+          let { price, amount } = curElem;
 
-            accum.total_item += amount;
-            accum.total_price += price * amount;
+          accum.total_item += amount;
+          accum.total_price += price * amount;
 
-            return accum;
-          }
-        },
-        {
-          total_item: 0,
-          total_price: 0,
+          return accum;
         }
-      );
-      return {
-        ...state,
-        total_item,
-        total_price,
-      };
+      },
+      {
+        total_item: 0,
+        total_price: 0,
+      }
+    );
+    return {
+      ...state,
+      total_item,
+      total_price,
+    };
   }
-
 
   return state;
 };

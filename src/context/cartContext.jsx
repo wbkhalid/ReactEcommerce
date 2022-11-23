@@ -5,11 +5,29 @@ const CartContext = createContext();
 
 const getLocalCartData = () => {
   let localCartData = localStorage.getItem('waleedCart');
-  if (!Array.isArray(localCartData) || !localCartData.length) {
+  if (
+    !Array.isArray(JSON.parse(localCartData)) ||
+    !JSON.parse(localCartData).length
+  ) {
+    console.log('is empty');
+    console.log('is empty');
+    console.log('is empty');
+
     return [];
-  } else if (!Array.isArray(localCartData) || localCartData.length) {
+  } else if (
+    !Array.isArray(JSON.parse(localCartData)) ||
+    JSON.parse(localCartData).length
+  ) {
+    console.log('is not empty');
+    console.log('is not empty');
+    console.log('is not empty');
+
     return JSON.parse(localCartData);
   }
+
+  console.log('is not empty');
+  console.log('is not empty');
+  console.log('is not empty');
 
   return [];
 };
@@ -25,7 +43,10 @@ export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const AddtoCart = (id, color, amount, product) => {
-    dispatch({ type: 'ADD_TO_CART', payload: { id, color, amount, product } });
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: { id, color, amount, product },
+    });
   };
 
   const setIncrease = (id) => {
@@ -46,13 +67,6 @@ export const CartProvider = ({ children }) => {
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' });
   };
-
-  // Store in Local Storage
-
-  useEffect(() => {
-    dispatch({ type: 'CART_ITEM_PRICE_TOTAL' });
-    localStorage.setItem('waleedCart', JSON.stringify(state.cart));
-  }, [state.cart]);
 
   return (
     <CartContext.Provider
