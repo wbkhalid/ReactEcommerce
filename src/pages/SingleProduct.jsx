@@ -17,7 +17,6 @@ const SingleProduct = () => {
     useProductContext();
 
   const {
-    id: alias,
     name,
     company,
     price,
