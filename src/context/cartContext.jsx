@@ -47,6 +47,8 @@ export const CartProvider = ({ children }) => {
       type: 'ADD_TO_CART',
       payload: { id, color, amount, product },
     });
+
+    dispatch({ type: 'CART_ITEM_PRICE_TOTAL' });
   };
 
   const setIncrease = (id) => {
