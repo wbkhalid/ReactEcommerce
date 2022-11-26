@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import {
@@ -7,36 +7,75 @@ import {
   AiOutlineClose,
 } from 'react-icons/ai';
 import { useCartContext } from '../context/cartContext';
+import { useAuth0 } from '@auth0/auth0-react';
+import { Button } from './Button';
 
 const NavBar = () => {
-  const {total_item} =useCartContext()
-  const [menuIcon, setMenuIcon] = useState(false)
+  const { total_item } = useCartContext();
+  const [menuIcon, setMenuIcon] = useState(false);
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
   return (
     <Nav>
-      <div className={menuIcon ? "navbar active": "navbar"}>
+      <div className={menuIcon ? 'navbar active' : 'navbar'}>
         <ul className="navbar-lists">
           <li>
-            <NavLink to="/" className="navbar-link" onClick={()=>setMenuIcon(false)}>
+            <NavLink
+              to="/"
+              className="navbar-link"
+              onClick={() => setMenuIcon(false)}
+            >
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/about" className="navbar-link" onClick={()=>setMenuIcon(false)}>
+            <NavLink
+              to="/about"
+              className="navbar-link"
+              onClick={() => setMenuIcon(false)}
+            >
               About
             </NavLink>
           </li>
           <li>
-            <NavLink to="/products" className="navbar-link" onClick={()=>setMenuIcon(false)}>
+            <NavLink
+              to="/products"
+              className="navbar-link"
+              onClick={() => setMenuIcon(false)}
+            >
               Products
             </NavLink>
           </li>
           <li>
-            <NavLink to="/contact" className="navbar-link" onClick={()=>setMenuIcon(false)}>
+            <NavLink
+              to="/contact"
+              className="navbar-link"
+              onClick={() => setMenuIcon(false)}
+            >
               Contact
             </NavLink>
           </li>
+
+          {isAuthenticated ? (
+            <li >
+              <Button className='inout'
+                onClick={() => logout({ returnTo: window.location.origin })}
+              >
+                Log Out
+              </Button>
+            </li>
+          ) : (
+            <li >
+              <Button className='inout'
+               onClick={() => loginWithRedirect()}>Log In</Button>;
+            </li>
+          )}
+
           <li>
-            <NavLink to="/cart" className="navbar-link cart-trolley--link" onClick={()=>setMenuIcon(false)}>
+            <NavLink
+              to="/cart"
+              className="navbar-link cart-trolley--link"
+              onClick={() => setMenuIcon(false)}
+            >
               <AiOutlineShoppingCart className="cart-trolley" />
               <span className="cart-trolley--item">{total_item}</span>
             </NavLink>
@@ -46,11 +85,15 @@ const NavBar = () => {
         {/* Two buttons for open and close navabr */}
 
         <div className="mobile-navbar--btn">
-          <AiOutlineMenu name="menu-outline" className="mobile-navbar--icon" onClick={()=>setMenuIcon(true)} />
+          <AiOutlineMenu
+            name="menu-outline"
+            className="mobile-navbar--icon"
+            onClick={() => setMenuIcon(true)}
+          />
           <AiOutlineClose
             name="close-outline"
             className="mobile-navbar--icon close-outline"
-            onClick={()=>setMenuIcon(false)}
+            onClick={() => setMenuIcon(false)}
           />
         </div>
       </div>
@@ -63,6 +106,7 @@ const Nav = styled.nav`
     display: flex;
     gap: 4rem;
     align-items: center;
+    justify-content: center;
 
     .navbar-link {
       &:link,
@@ -80,7 +124,15 @@ const Nav = styled.nav`
         color: ${({ theme }) => theme.colors.helper};
       }
     }
+    .inout{
+  padding: 4px 10px;
+  margin-bottom: 1.5rem;
+  border-radius: 2rem;
+  
+}
   }
+
+  
 
   .mobile-navbar--btn {
     display: none;
@@ -119,6 +171,11 @@ const Nav = styled.nav`
       background-color: ${({ theme }) => theme.colors.cart_bg};
     }
   }
+
+  
+
+
+
 
   /* Media Queries */
 
@@ -163,18 +220,16 @@ const Nav = styled.nav`
       visibility: hidden;
       opacity: 0;
       transform: translateX(100%);
-      transition: all .3s linear;
-
+      transition: all 0.3s linear;
     }
 
-    .active .navbar-lists{
+    .active .navbar-lists {
       visibility: visible;
       opacity: 1;
       transform: translateX(0);
-      transition: all .3s linear;
-
+      transition: all 0.3s linear;
     }
-    .navbar-link{
+    .navbar-link {
       font-size: 10rem;
     }
   }
