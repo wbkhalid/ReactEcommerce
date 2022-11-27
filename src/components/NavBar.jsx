@@ -13,7 +13,7 @@ import { Button } from './Button';
 const NavBar = () => {
   const { total_item } = useCartContext();
   const [menuIcon, setMenuIcon] = useState(false);
-  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const { loginWithRedirect, logout, isAuthenticated,user } = useAuth0();
   return (
     <Nav>
       <div className={menuIcon ? 'navbar active' : 'navbar'}>
@@ -54,6 +54,9 @@ const NavBar = () => {
               Contact
             </NavLink>
           </li>
+
+      {isAuthenticated && <p>{user.name}</p>}
+        
 
           {isAuthenticated ? (
             <li >

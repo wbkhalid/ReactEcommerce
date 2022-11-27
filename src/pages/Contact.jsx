@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Contact = () => {
+  const {  isAuthenticated, user } = useAuth0();
   return (
     <Wrapper>
       <h2 className="common-heading">Feel free to contact us</h2>
@@ -23,8 +25,11 @@ const Contact = () => {
           method="POST"
           className="contact-inputs"
         >
-          <input type="text" name="username" placeholder="username" required />
-          <input type="email" name="Email" placeholder="Email" required />
+          <input type="text" name="username" placeholder="username" required  value={isAuthenticated ? user.name : ""}/>
+
+          <input type="email" name="Email" placeholder="Email" required
+          value={isAuthenticated ? user.email : ""} />
+
           <textarea cols="50" rows="6" name="message" />
           <input type="submit" value="send" />
         </form>
